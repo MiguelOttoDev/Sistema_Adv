@@ -4,7 +4,8 @@ import Cards from "./cards";
 import List from "./List";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  // Inicializando isOpen como false para deixar a sidebar fechada por padrão
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
