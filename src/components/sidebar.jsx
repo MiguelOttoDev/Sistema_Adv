@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { FaHome, FaCog, FaUser, FaSignOutAlt, FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import Cards from "./cards";
+import List from "./List";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true); 
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -13,21 +14,14 @@ export default function Sidebar() {
     <div className="flex h-screen">
       {/* Sidebar */}
       <div
-        className={`bg-gray-800 text-white h-full transition-all duration-300 ${
-          isOpen ? "w-64" : "w-16"
-        }`}
+        className={`bg-gray-800 text-white h-screen transition-all duration-300 ${isOpen ? "w-64" : "w-16"} fixed top-0 left-0 z-10`}
       >
         {/* Header da Sidebar */}
         <div className="flex items-center justify-between p-4">
           <h1
-            className={`text-2xl font-bold transition-opacity duration-300 ${
-              isOpen ? "opacity-100" : "opacity-0"
-            }`}
+            className={`text-2xl font-bold transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}
           >
-           {isOpen && <p >
-            <FaUserCircle  />
-            </p> }
-            
+            {isOpen && <p><FaUserCircle /></p>}
           </h1>
           <button
             onClick={toggleSidebar}
@@ -75,8 +69,11 @@ export default function Sidebar() {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 bg-gray-100 p-6">
-        <Cards/>
+      <div
+        className={`flex-1 bg-gray-100 p-6 overflow-y-auto ${isOpen ? "ml-64" : "ml-16"}`}
+      >
+        <Cards />
+        <List />
       </div>
     </div>
   );
